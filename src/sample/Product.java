@@ -2,21 +2,26 @@ package sample;
 
 import javafx.scene.image.Image;
 
+import java.io.InputStream;
+
 public class Product {
     String title;
     String quantity;
     String description;
     double oldPrice;
     double newPrice;
+    String picName;
     Image image;
 
-    public Product(String title, String quantity, String description, double oldPrice, double newPrice, Image img) {
+    public Product(String title, String quantity, String description, double oldPrice, double newPrice, String picName) {
         this.title = title;
         this.quantity = quantity;
         this.description = description;
         this.oldPrice = oldPrice;
         this.newPrice = newPrice;
-        this.image = img;
+        InputStream img = this.getClass().getResourceAsStream("/images/"+picName+"__600x600.jpg" );
+        this.picName = picName;
+        this.image =  new Image(img);
     }
 
     public String getTitle() {
@@ -57,6 +62,14 @@ public class Product {
 
     public void setNewPrice(double newPrice) {
         this.newPrice = newPrice;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     @Override
